@@ -45,27 +45,41 @@ const criarListaPotencia2 = function (quantidade) {
     return listaPotencia2
 }
 
-const criarLinha = function(num, par, impar, multi5, pot2){
-     const tbody = document.getElementById('tbody')
-     const tr = document.createElement('tr')
-     const tdNum = document.createElement('td')
-     tdNum.textContent = num
+const criarLinha = function (num, par, impar, multi5, pot2) {
+    const tbody = document.getElementById('tbody')
+    const tr = document.createElement('tr')
+    
+    const tdNum = document.createElement('td')
+    tdNum.textContent = num
 
-     const tdPar = document.createElement('td')
-     tdPar.textContent = par
+    const tdPar = document.createElement('td')
+    tdPar.textContent = par
 
-     const tdImpar = document.createElement('td')
-     tdImpar.textContent = impar
+    const tdImpar = document.createElement('td')
+    tdImpar.textContent = impar
 
-     const tdMulti5 = document.createElement('td')
-     tdMulti5.textContent = multi5
+    const tdMulti5 = document.createElement('td')
+    tdMulti5.textContent = multi5
 
-     const tdPot2 = document.createElement('td')
-     tdPot2.textContent = pot2
+    const tdPot2 = document.createElement('td')
+    tdPot2.textContent = pot2
 
-     tr.replaceChildren(tdNum, tdPar, tdImpar, tdMulti5, tdPot2)
+    tr.replaceChildren(tdNum, tdPar, tdImpar, tdMulti5, tdPot2)
 
-     tbody.appendChild(tr)
+    tbody.appendChild(tr)
 }
 
-criarLinha(10, 20, 30, 40, 50)
+const handleClick = function () {
+    const quantidade = Number(document.getElementById('quantidade').value)
+
+    const listaNum = criarListaNumeros(quantidade)
+    const listaPares = criarListaPares(quantidade)
+    const listaImpar = criarListaImpar(quantidade)
+    const listaMulti5 = criarListaMulti5(quantidade)
+    const listaPot2 = criarListaPotencia2(quantidade)
+
+    document.getElementById('tbody').replaceChildren()
+
+    for (let i = 0; i < quantidade; i++)
+        criarLinha(listaNum[i], listaPares[i], listaImpar[i], listaMulti5[i], listaPot2[i])
+}
